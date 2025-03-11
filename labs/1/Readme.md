@@ -34,5 +34,5 @@ Y - номер Leaf;
 Z - номер Spine.
 
 ## Cхема сети:
-![This is an alt text.](Sheme1.PNG "This is a sample image.")
+![This is an alt text.](Sheme1.PNG "This is a network topology.")
 ## Настройки сети:
