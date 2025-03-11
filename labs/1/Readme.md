@@ -357,6 +357,7 @@ PING 169.254.1.4 (169.254.1.4) 72(100) bytes of data.
 --- 169.254.1.4 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 20.424/20.424/20.424/0.000 ms
+
 L1#ping 169.254.1.5 repeat 1
 PING 169.254.1.5 (169.254.1.5) 72(100) bytes of data.
 80 bytes from 169.254.1.5: icmp_seq=1 ttl=63 time=21.9 ms
