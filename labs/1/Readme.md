@@ -34,5 +34,5 @@ Y - номер Leaf;
 Z - номер Spine.
 
 ## Cхема сети:
-
+![This is an alt text.](DC/labs/1/Sheme_#1.PNG "This is a sample image.")
 ## Настройки сети:
