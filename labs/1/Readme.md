@@ -329,3 +329,39 @@ router isis UNDERLAY
 !
 end
 ```
+
+## Проверка работы сети:
+
+```
+L1#show ip route | begin Gateway
+Gateway of last resort is not set
+
+ I L2     169.254.1.1/32 [115/11] via 169.254.11.0, Ethernet7
+ I L2     169.254.1.2/32 [115/11] via 169.254.12.0, Ethernet8
+ C        169.254.1.3/32 is directly connected, Loopback0
+ I L2     169.254.1.4/32 [115/21] via 169.254.11.0, Ethernet7
+                                  via 169.254.12.0, Ethernet8
+ I L2     169.254.1.5/32 [115/21] via 169.254.11.0, Ethernet7
+                                  via 169.254.12.0, Ethernet8
+ C        169.254.11.0/31 is directly connected, Ethernet7
+ C        169.254.12.0/31 is directly connected, Ethernet8
+ I L2     169.254.21.0/31 [115/20] via 169.254.11.0, Ethernet7
+ I L2     169.254.22.0/31 [115/20] via 169.254.12.0, Ethernet8
+ I L2     169.254.31.0/31 [115/20] via 169.254.11.0, Ethernet7
+ I L2     169.254.32.0/31 [115/20] via 169.254.12.0, Ethernet8
+
+L1#ping 169.254.1.4 repeat 1
+PING 169.254.1.4 (169.254.1.4) 72(100) bytes of data.
+80 bytes from 169.254.1.4: icmp_seq=1 ttl=63 time=20.4 ms
+
+--- 169.254.1.4 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 20.424/20.424/20.424/0.000 ms
+L1#ping 169.254.1.5 repeat 1
+PING 169.254.1.5 (169.254.1.5) 72(100) bytes of data.
+80 bytes from 169.254.1.5: icmp_seq=1 ttl=63 time=21.9 ms
+
+--- 169.254.1.5 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 21.967/21.967/21.967/0.000 ms
+```
