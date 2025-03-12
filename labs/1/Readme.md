@@ -30,7 +30,7 @@
 | Loopbacks    | 169.254.X.0/22  |
 | P-2-P links  | 169.254.YZ.0/24  |
 
-X - номер DC;
+* X - номер DC;
 Y - номер Leaf;
 Z - номер Spine.
 
