@@ -27,12 +27,14 @@
 
 | Назначение   | IP Network      |
 | ------------ |:---------------:|
-| Loopbacks    | 169.254.X.0/22  |
-| P-2-P links  | 169.254.YZ.0/24  |
+| Loopbacks    | 169.254.X.x/22  |
+| P-2-P links  | 169.254.Yy.Z/24  |
 
 * X - номер DC;
+* x - порядковый номер коммутатора;
 * Y - номер Leaf;
-Z - номер Spine.
+* y - номер Spine;
+* Z = 0 - адрес на стороне Spine; Z = 1 - адрес на стороне Leaf.
 
 ## Cхема сети:
 ![This is an alt text.](Scheme1.PNG "This is a network topology.")
