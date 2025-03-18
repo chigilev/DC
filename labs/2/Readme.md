@@ -58,7 +58,70 @@
 * Настраивать OSPF для Underlay в GRT;
 * Настройки аутентификации.
 
-Дополнительно был отключен протокол STP на Spine-коммутаторах, на Leaf-коммутаторах подобных настроек не производилось.
+Дополнительно был отключен протокол STP на Spine-коммутаторах. Во избежание петель в рамках одного Leaf-коммутаторовна, подобных настроек на оных не производилось.
+
+## Проверка работы Underlay-сети:
+
+```
+L1#show ipv6 route
+
+VRF: default
+Displaying 11 of 17 IPv6 routing table entries
+Codes: C - connected, S - static, K - kernel, O3 - OSPFv3,
+       B - Other BGP Routes, A B - BGP Aggregate, R - RIP,
+       I L1 - IS-IS level 1, I L2 - IS-IS level 2, DH - DHCP,
+       NG - Nexthop Group Static Route, M - Martian,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       RC - Route Cache Route
+
+ O3       fd00::1/128 [110/20]
+           via fe80::8000, Ethernet7
+ O3       fd00::2/128 [110/20]
+           via fe80::8006, Ethernet8
+ C        fd00::3/128 [0/0]
+           via Loopback0, directly connected
+ O3       fd00::4/128 [110/30]
+           via fe80::8000, Ethernet7
+           via fe80::8006, Ethernet8
+ O3       fd00::5/128 [110/30]
+           via fe80::8000, Ethernet7
+           via fe80::8006, Ethernet8
+ C        fd00::8000/127 [0/1]
+           via Ethernet7, directly connected
+ O3       fd00::8002/127 [110/20]
+           via fe80::8000, Ethernet7
+ O3       fd00::8004/127 [110/20]
+           via fe80::8000, Ethernet7
+ C        fd00::8006/127 [0/1]
+           via Ethernet8, directly connected
+ O3       fd00::8008/127 [110/20]
+           via fe80::8006, Ethernet8
+ O3       fd00::8010/127 [110/20]
+           via fe80::8006, Ethernet8
+
+L1#ping fd00::3 rep 1
+PING fd00::3(fd00::3) 52 data bytes
+60 bytes from fd00::3: icmp_seq=1 ttl=64 time=1.07 ms
+
+--- fd00::3 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.076/1.076/1.076/0.000 ms
+L1#ping fd00::4 rep 1
+PING fd00::4(fd00::4) 52 data bytes
+60 bytes from fd00::4: icmp_seq=1 ttl=63 time=36.1 ms
+
+--- fd00::4 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 36.144/36.144/36.144/0.000 ms
+L1#ping fd00::5 rep 1
+PING fd00::5(fd00::5) 52 data bytes
+60 bytes from fd00::5: icmp_seq=1 ttl=63 time=18.8 ms
+
+--- fd00::5 ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 18.870/18.870/18.870/0.000 ms
+```
+
 
 ## Конфигурация устройств:
 ```
@@ -352,41 +415,4 @@ router isis UNDERLAY
    address-family ipv4 unicast
 !
 end
-```
-
-## Проверка работы сети:
-
-```
-L1#show ip route | begin Gateway
-Gateway of last resort is not set
-
- I L2     169.254.1.1/32 [115/11] via 169.254.11.0, Ethernet7
- I L2     169.254.1.2/32 [115/11] via 169.254.12.0, Ethernet8
- C        169.254.1.3/32 is directly connected, Loopback0
- I L2     169.254.1.4/32 [115/21] via 169.254.11.0, Ethernet7
-                                  via 169.254.12.0, Ethernet8
- I L2     169.254.1.5/32 [115/21] via 169.254.11.0, Ethernet7
-                                  via 169.254.12.0, Ethernet8
- C        169.254.11.0/31 is directly connected, Ethernet7
- C        169.254.12.0/31 is directly connected, Ethernet8
- I L2     169.254.21.0/31 [115/20] via 169.254.11.0, Ethernet7
- I L2     169.254.22.0/31 [115/20] via 169.254.12.0, Ethernet8
- I L2     169.254.31.0/31 [115/20] via 169.254.11.0, Ethernet7
- I L2     169.254.32.0/31 [115/20] via 169.254.12.0, Ethernet8
-
-L1#ping 169.254.1.4 repeat 1
-PING 169.254.1.4 (169.254.1.4) 72(100) bytes of data.
-80 bytes from 169.254.1.4: icmp_seq=1 ttl=63 time=20.4 ms
-
---- 169.254.1.4 ping statistics ---
-1 packets transmitted, 1 received, 0% packet loss, time 0ms
-rtt min/avg/max/mdev = 20.424/20.424/20.424/0.000 ms
-
-L1#ping 169.254.1.5 repeat 1
-PING 169.254.1.5 (169.254.1.5) 72(100) bytes of data.
-80 bytes from 169.254.1.5: icmp_seq=1 ttl=63 time=21.9 ms
-
---- 169.254.1.5 ping statistics ---
-1 packets transmitted, 1 received, 0% packet loss, time 0ms
-rtt min/avg/max/mdev = 21.967/21.967/21.967/0.000 ms
 ```
