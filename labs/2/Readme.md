@@ -150,52 +150,77 @@ service routing protocols model ribd
 !
 hostname S1
 !
-spanning-tree mode mstp
+spanning-tree mode none
 !
 interface Ethernet1
    no switchport
-   ip address 169.254.11.0/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8000/127
+   ipv6 address fe80::8000/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 kJLQ2UxPSLtsZ75QNgTh6g==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Ethernet2
    no switchport
-   ip address 169.254.21.0/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8002/127
+   ipv6 address fe80::8002/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 SIlxYKscF9mRUDXhtqywJQ==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Ethernet3
    no switchport
-   ip address 169.254.31.0/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8004/127
+   ipv6 address fe80::8004/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 SIlxYKscF9mRUDXhtqywJQ==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Ethernet4
+   shutdown
 !
 interface Ethernet5
+   shutdown
 !
 interface Ethernet6
+   shutdown
 !
 interface Ethernet7
+   shutdown
 !
 interface Ethernet8
+   shutdown
 !
 interface Loopback0
-   ip address 169.254.1.1/32
+   ipv6 enable
+   ipv6 address fd00::1/128
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Management1
 !
-ip routing
+no ip routing
 !
-router isis UNDERLAY
-   net 49.0001.0000.0000.0001.00
-   is-type level-2
-   redistribute connected
-   !
-   address-family ipv4 unicast
+ipv6 unicast-routing
 !
-```
-```
+ipv6 router ospf 1
+   router-id 1.2.1.1
+   passive-interface default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   no passive-interface Ethernet3
+!
+end
+
+
 S2#show running-config
 ! Command: show running-config
 ! device: S2 (vEOS-lab, EOS-4.29.2F)
@@ -210,53 +235,77 @@ service routing protocols model ribd
 !
 hostname S2
 !
-spanning-tree mode mstp
+spanning-tree mode none
 !
 interface Ethernet1
    no switchport
-   ip address 169.254.12.0/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8006/127
+   ipv6 address fe80::8006/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 kJLQ2UxPSLtsZ75QNgTh6g==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Ethernet2
    no switchport
-   ip address 169.254.22.0/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8008/127
+   ipv6 address fe80::8008/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 SIlxYKscF9mRUDXhtqywJQ==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Ethernet3
    no switchport
-   ip address 169.254.32.0/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8010/127
+   ipv6 address fe80::8010/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 SIlxYKscF9mRUDXhtqywJQ==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Ethernet4
+   shutdown
 !
 interface Ethernet5
+   shutdown
 !
 interface Ethernet6
+   shutdown
 !
 interface Ethernet7
+   shutdown
 !
 interface Ethernet8
+   shutdown
 !
 interface Loopback0
-   ip address 169.254.1.2/32
+   ipv6 enable
+   ipv6 address fd00::2/128
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Management1
 !
-ip routing
+no ip routing
 !
-router isis UNDERLAY
-   net 49.0001.0000.0000.0002.00
-   is-type level-2
-   redistribute connected
-   !
-   address-family ipv4 unicast
+ipv6 unicast-routing
+!
+ipv6 router ospf 1
+   router-id 1.2.1.2
+   passive-interface default
+   no passive-interface Ethernet1
+   no passive-interface Ethernet2
+   no passive-interface Ethernet3
 !
 end
-```
-```
+
+
 L1#show running-config
 ! Command: show running-config
 ! device: L1 (vEOS-lab, EOS-4.29.2F)
@@ -287,36 +336,49 @@ interface Ethernet6
 !
 interface Ethernet7
    no switchport
-   ip address 169.254.11.1/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8001/127
+   ipv6 address fe80::8001/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 tYektvZH6k3iPsqBlcFUIA==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Ethernet8
    no switchport
-   ip address 169.254.12.1/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8007/127
+   ipv6 address fe80::8007/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 iY21IKpBYbs6+fO7EEqo0Q==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Loopback0
-   ip address 169.254.1.3/32
+   ipv6 enable
+   ipv6 address fd00::3/128
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Management1
 !
-ip routing
+no ip routing
 !
-router isis UNDERLAY
-   net 49.0001.0000.0000.0011.00
-   is-type level-2
-   redistribute connected
-   !
-   address-family ipv4 unicast
+ipv6 unicast-routing
+!
+ipv6 router ospf 1
+   router-id 1.1.1.1
+   passive-interface default
+   no passive-interface Ethernet7
+   no passive-interface Ethernet8
 !
 end
-```
-```
+
+
 L2#show running-config
 ! Command: show running-config
- ! device: L2 (vEOS-lab, EOS-4.29.2F)
+! device: L2 (vEOS-lab, EOS-4.29.2F)
 !
 ! boot system flash:/vEOS-lab.swi
 !
@@ -344,33 +406,46 @@ interface Ethernet6
 !
 interface Ethernet7
    no switchport
-   ip address 169.254.21.1/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8003/127
+   ipv6 address fe80::8003/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 tYektvZH6k3iPsqBlcFUIA==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Ethernet8
    no switchport
-   ip address 169.254.22.1/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8009/127
+   ipv6 address fe80::8009/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 iY21IKpBYbs6+fO7EEqo0Q==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Loopback0
-   ip address 169.254.1.4/32
+   ipv6 enable
+   ipv6 address fd00::4/128
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Management1
 !
-ip routing
+no ip routing
 !
-router isis UNDERLAY
-   net 49.0001.0000.0000.0012.00
-   is-type level-2
-   redistribute connected
-   !
-   address-family ipv4 unicast
+ipv6 unicast-routing
+!
+ipv6 router ospf 1
+   router-id 1.1.1.2
+   passive-interface default
+   no passive-interface Ethernet7
+   no passive-interface Ethernet8
 !
 end
-```
-```
+
+
 L3#show running-config
 ! Command: show running-config
 ! device: L3 (vEOS-lab, EOS-4.29.2F)
@@ -401,29 +476,45 @@ interface Ethernet6
 !
 interface Ethernet7
    no switchport
-   ip address 169.254.31.1/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8005/127
+   ipv6 address fe80::8005/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 tYektvZH6k3iPsqBlcFUIA==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Ethernet8
    no switchport
-   ip address 169.254.32.1/31
-   isis enable UNDERLAY
-   isis network point-to-point
+   bfd interval 100 min-rx 100 multiplier 3
+   ipv6 enable
+   ipv6 address fd00::8011/127
+   ipv6 address fe80::8011/64 link-local
+   ipv6 ospf bfd
+   ipv6 ospf network point-to-point
+   ipv6 ospf authentication ipsec spi 100 md5 passphrase 7 iY21IKpBYbs6+fO7EEqo0Q==
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Loopback0
-   ip address 169.254.1.5/32
+   ipv6 enable
+   ipv6 address fd00::5/128
+   ipv6 ospf 1 area 0.0.0.0
 !
 interface Management1
 !
-ip routing
+no ip routing
 !
-router isis UNDERLAY
-   net 49.0001.0000.0000.0013.00
-   is-type level-2
-   redistribute connected
-   !
-   address-family ipv4 unicast
+ipv6 prefix-list Loopbacks
+   seq 10 permit fd00::/118 eq 128
+!
+ipv6 unicast-routing
+!
+ipv6 router ospf 1
+   router-id 1.1.1.3
+   passive-interface default
+   no passive-interface Ethernet7
+   no passive-interface Ethernet8
 !
 end
 ```
