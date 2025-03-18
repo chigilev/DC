@@ -22,7 +22,7 @@
 4) Назначить адреса на сооветствующие интерфейсы;
 5) Настроить протокол динамической маршрутизации Underlay (учесть рекомендации);
 6) Проверить связность между адресами на Loopback-интерфейсах.
-7) Листинг команд для проверки корректной работы сети.
+7) Листинг команд для проверки корректной работы сети с учетом реализованных рекомендаций.
 8) Конфигурации устройств.
 
 ## Адресное пространство:
@@ -35,12 +35,13 @@
 | Loopbacks    | fd00::x/118  | fd00::0000 - fd00::03ff  | 1024 |
 | P-2-P links  | fd00::8000/113  | fd00::8000 - fd00::ffff  | 32768 |
 | Link-local  | fe80::8000/113(64) | fe80::8000 - fe80::ffff | 32768 |
+| Router ID  | 1.y.1.z | none | none |
 
 * Номер DC в адресный план не заложено, для последующих инсталляций берутся следующий по порядку диапазон адресов;
 * x - порядковый номер коммутатора, при этом младшие адреса используются Spine-коммутаторами, последующие - Leaf-коммутаторами;
 * Адреса для P-2-P интерфейсов между Spine- и Leaf-коммутаторами вибираются из диапазона с маской /127 и назначаются в порядке следования линков по топологии сети. При этом младший адрес назначается со стороны Spine-коммутатора, а старший - со стороны Leaf-коммутаторы;
 * Адреса Link-local назначаются по из соображений назначенных адресов на P-2-P линках по последнему хекстету.
-
+* Адрес для Router ID назначается по порядку следования, где: y = 1 - для Leaf-коммутаторов, y = 2 - для Spine-коммутаторов, а z - назначается по порядку следования для каждого из уровней.
 
 ## Cхема сети:
 ![This is an alt text.](Scheme2.PNG "This is a network topology.")
@@ -122,6 +123,47 @@ PING fd00::5(fd00::5) 52 data bytes
 rtt min/avg/max/mdev = 18.870/18.870/18.870/0.000 ms
 ```
 
+## Листинг команд с их выводом на примере одного устройства:
+
+```
+S1#show ipv6 neighbors
+IPv6 Address                                  Age Hardware Addr    State Interface
+fd00::8001                                0:05:41 5000.002f.d8fe   REACH Et1
+fe80::8001                                2:25:03 5000.002f.d8fe   REACH Et1
+fd00::8003                                3:13:42 5000.00ba.c6f8   REACH Et2
+fe80::8003                                2:30:01 5000.00ba.c6f8   REACH Et2
+fd00::8005                                3:22:36 5000.00d8.ac19   REACH Et3
+fe80::8005                                2:29:22 5000.00d8.ac19   REACH Et3
+
+S1#show ipv6 ospf neighbor
+Routing Process "ospf 1":
+Neighbor 1.1.1.1 VRF default priority is 0, state is Full
+  In area 0.0.0.0 interface Ethernet1
+  DR is None BDR is None
+  Options is E R V6
+  Dead timer is due in 33 seconds
+  Bfd request is sent and the state is Up
+  Graceful-restart-helper mode is Inactive
+  Graceful-restart attempts: 0
+Neighbor 1.1.1.3 VRF default priority is 0, state is Full
+  In area 0.0.0.0 interface Ethernet3
+  DR is None BDR is None
+  Options is E R V6
+  Dead timer is due in 32 seconds
+  Bfd request is sent and the state is Down
+  Graceful-restart-helper mode is Inactive
+  Graceful-restart attempts: 0
+Neighbor 1.1.1.2 VRF default priority is 0, state is Full
+  In area 0.0.0.0 interface Ethernet2
+  DR is None BDR is None
+  Options is E R V6
+  Dead timer is due in 33 seconds
+  Bfd request is sent and the state is Down
+  Graceful-restart-helper mode is Inactive
+  Graceful-restart attempts: 0
+
+
+```
 
 ## Конфигурация устройств:
 ```
