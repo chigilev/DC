@@ -123,46 +123,15 @@ PING fd00::5(fd00::5) 52 data bytes
 rtt min/avg/max/mdev = 18.870/18.870/18.870/0.000 ms
 ```
 
-## Листинг команд с их выводом на примере одного устройства:
+## Листинг команд:
 
 ```
-S1#show ipv6 neighbors
-IPv6 Address                                  Age Hardware Addr    State Interface
-fd00::8001                                0:05:41 5000.002f.d8fe   REACH Et1
-fe80::8001                                2:25:03 5000.002f.d8fe   REACH Et1
-fd00::8003                                3:13:42 5000.00ba.c6f8   REACH Et2
-fe80::8003                                2:30:01 5000.00ba.c6f8   REACH Et2
-fd00::8005                                3:22:36 5000.00d8.ac19   REACH Et3
-fe80::8005                                2:29:22 5000.00d8.ac19   REACH Et3
-
-S1#show ipv6 ospf neighbor
-Routing Process "ospf 1":
-Neighbor 1.1.1.1 VRF default priority is 0, state is Full
-  In area 0.0.0.0 interface Ethernet1
-  DR is None BDR is None
-  Options is E R V6
-  Dead timer is due in 33 seconds
-  Bfd request is sent and the state is Up
-  Graceful-restart-helper mode is Inactive
-  Graceful-restart attempts: 0
-Neighbor 1.1.1.3 VRF default priority is 0, state is Full
-  In area 0.0.0.0 interface Ethernet3
-  DR is None BDR is None
-  Options is E R V6
-  Dead timer is due in 32 seconds
-  Bfd request is sent and the state is Down
-  Graceful-restart-helper mode is Inactive
-  Graceful-restart attempts: 0
-Neighbor 1.1.1.2 VRF default priority is 0, state is Full
-  In area 0.0.0.0 interface Ethernet2
-  DR is None BDR is None
-  Options is E R V6
-  Dead timer is due in 33 seconds
-  Bfd request is sent and the state is Down
-  Graceful-restart-helper mode is Inactive
-  Graceful-restart attempts: 0
-
-
+show ipv6 neighbors
+show ipv6 ospf 1 interface
+show ipv6 ospf neighbor
+show ipv6 ospf database
+show ipv6 route
+show spanning-tree
 ```
 
 ## Конфигурация устройств:
