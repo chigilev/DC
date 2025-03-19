@@ -109,6 +109,7 @@ PING fd00::3(fd00::3) 52 data bytes
 --- fd00::3 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 1.076/1.076/1.076/0.000 ms
+
 L1#ping fd00::4 rep 1
 PING fd00::4(fd00::4) 52 data bytes
 60 bytes from fd00::4: icmp_seq=1 ttl=63 time=36.1 ms
@@ -116,6 +117,7 @@ PING fd00::4(fd00::4) 52 data bytes
 --- fd00::4 ping statistics ---
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 36.144/36.144/36.144/0.000 ms
+
 L1#ping fd00::5 rep 1
 PING fd00::5(fd00::5) 52 data bytes
 60 bytes from fd00::5: icmp_seq=1 ttl=63 time=18.8 ms
