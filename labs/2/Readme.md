@@ -125,7 +125,7 @@ PING fd00::5(fd00::5) 52 data bytes
 rtt min/avg/max/mdev = 18.870/18.870/18.870/0.000 ms
 ```
 
-## Листинг команд:
+## Листинг команд с примерами вывода:
 
 ```
 show ipv6 neighbors
@@ -300,7 +300,7 @@ S1#show spanning-tree
 Spanning-tree has been disabled in the configuration.
 ```
 
-## Конфигурация устройств:
+## Конфигурации устройств:
 ```
 S1#show running-config
 ! Command: show running-config
