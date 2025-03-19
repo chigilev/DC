@@ -134,6 +134,170 @@ show ipv6 ospf neighbor
 show ipv6 ospf database
 show ipv6 route
 show spanning-tree
+
+Пример вывода команд с первого Spine-коммутатора:
+
+S1#show ipv6 neighbors
+IPv6 Address                                  Age Hardware Addr    State Interface
+fd00::8001                                0:02:48 5000.002f.d8fe   REACH Et1
+fe80::8001                                0:00:05 5000.002f.d8fe   REACH Et1
+fe80::8003                                0:00:04 5000.00ba.c6f8   REACH Et2
+fe80::8005                                0:00:02 5000.00d8.ac19   REACH Et3
+
+S1#show ipv6 ospf 1 interface
+Ethernet1 is up
+  Interface Address fe80::8000, VRF default, Area 0.0.0.0
+  Network Type Point-To-Point, Cost 10
+  Transmit Delay is 1 sec, State P2P, BFD Enabled
+  No Designated Router on this network
+  No Backup Designated Router on this network
+  Timer intervals configured, Hello 10, Dead 40, Retransmit 5
+  Neighbor Count is 1
+  AH authentication is enabled with HMAC-MD5 and SPI 100
+  Options are E R V6
+Ethernet3 is up
+  Interface Address fe80::8004, VRF default, Area 0.0.0.0
+  Network Type Point-To-Point, Cost 10
+  Transmit Delay is 1 sec, State P2P, BFD Enabled
+  No Designated Router on this network
+  No Backup Designated Router on this network
+  Timer intervals configured, Hello 10, Dead 40, Retransmit 5
+  Neighbor Count is 1
+  AH authentication is enabled with HMAC-MD5 and SPI 100
+  Options are E R V6
+Ethernet2 is up
+  Interface Address fe80::8002, VRF default, Area 0.0.0.0
+  Network Type Point-To-Point, Cost 10
+  Transmit Delay is 1 sec, State P2P, BFD Enabled
+  No Designated Router on this network
+  No Backup Designated Router on this network
+  Timer intervals configured, Hello 10, Dead 40, Retransmit 5
+  Neighbor Count is 1
+  AH authentication is enabled with HMAC-MD5 and SPI 100
+  Options are E R V6
+Loopback0 is up
+  Interface Address unassigned, VRF default, Area 0.0.0.0
+  Network Type Broadcast, Cost 10
+  Transmit Delay is 1 sec, State DR, Priority 1
+  Designated Router is 1.2.1.1
+  Backup Designated Router is 0.0.0.0
+  Timer intervals configured, Hello 10, Dead 40, Retransmit 5
+  Neighbor Count is 0 (Passive Interface)
+  Options are E R V6
+
+S1#show ipv6 ospf neighbor
+Routing Process "ospf 1":
+Neighbor 1.1.1.1 VRF default priority is 0, state is Full
+  In area 0.0.0.0 interface Ethernet1
+  DR is None BDR is None
+  Options is E R V6
+  Dead timer is due in 29 seconds
+  Bfd request is sent and the state is Up
+  Graceful-restart-helper mode is Inactive
+  Graceful-restart attempts: 0
+Neighbor 1.1.1.3 VRF default priority is 0, state is Full
+  In area 0.0.0.0 interface Ethernet3
+  DR is None BDR is None
+  Options is E R V6
+  Dead timer is due in 37 seconds
+  Bfd request is sent and the state is Up
+  Graceful-restart-helper mode is Inactive
+  Graceful-restart attempts: 0
+Neighbor 1.1.1.2 VRF default priority is 0, state is Full
+  In area 0.0.0.0 interface Ethernet2
+  DR is None BDR is None
+  Options is E R V6
+  Dead timer is due in 38 seconds
+  Bfd request is sent and the state is Up
+  Graceful-restart-helper mode is Inactive
+  Graceful-restart attempts: 0
+
+S1#show ipv6 ospf database
+Codes: AEX - AS External, GRC - Grace,
+       IAP - Inter Area Prefix, IAR - Inter Area Router,
+       LNK - Link, NAP - Intra Area Prefix,
+       NSA - Not So Stubby Area, NTW - Network,
+       RTR - Router
+Routing Process "ospf 1", VRF default
+
+  AS Scope LSDB
+
+Type        Link ID     ADV Router  Age       Seq#   Checksum
+
+  Area 0.0.0.0 LSDB
+
+Type        Link ID     ADV Router  Age       Seq#   Checksum
+ RTR        0.0.0.0        1.2.1.2   81 0x8000000d   0x009011
+ NAP        0.0.0.1        1.2.1.2 1670 0x80000004   0x00f7f6
+ RTR        0.0.0.0        1.2.1.1   81 0x80000010   0x006a38
+ NAP        0.0.0.1        1.2.1.1 1671 0x80000004   0x0045c4
+ RTR        0.0.0.0        1.1.1.1   80 0x8000000b   0x008e43
+ NAP        0.0.0.1        1.1.1.1 1661 0x80000003   0x00eb3c
+ RTR        0.0.0.0        1.1.1.3   82 0x80000009   0x00cefe
+ NAP        0.0.0.1        1.1.1.3 1652 0x80000003   0x0046cd
+ RTR        0.0.0.0        1.1.1.2   82 0x8000000b   0x009c32
+ NAP        0.0.0.1        1.1.1.2 1660 0x80000003   0x0076aa
+
+  Interface Et1 LSDB
+
+Type        Link ID     ADV Router  Age       Seq#   Checksum
+ LNK        0.0.0.1        1.2.1.1   86 0x80000001   0x003ae3
+ LNK        0.0.0.7        1.1.1.1   87 0x80000001   0x001cfb
+
+  Interface Et3 LSDB
+
+Type        Link ID     ADV Router  Age       Seq#   Checksum
+ LNK        0.0.0.3        1.2.1.1   88 0x80000001   0x0037dc
+ LNK        0.0.0.7        1.1.1.3   89 0x80000001   0x0021ec
+
+  Interface Et2 LSDB
+
+Type        Link ID     ADV Router  Age       Seq#   Checksum
+ LNK        0.0.0.2        1.2.1.1   87 0x80000001   0x00b860
+ LNK        0.0.0.7        1.1.1.2   88 0x80000001   0x009e74
+
+  Interface Lo0 LSDB
+
+Type        Link ID     ADV Router  Age       Seq#   Checksum
+
+S1#show ipv6 route
+
+VRF: default
+Displaying 11 of 18 IPv6 routing table entries
+Codes: C - connected, S - static, K - kernel, O3 - OSPFv3,
+       B - Other BGP Routes, A B - BGP Aggregate, R - RIP,
+       I L1 - IS-IS level 1, I L2 - IS-IS level 2, DH - DHCP,
+       NG - Nexthop Group Static Route, M - Martian,
+       DP - Dynamic Policy Route, L - VRF Leaked,
+       RC - Route Cache Route
+
+ C        fd00::1/128 [0/0]
+           via Loopback0, directly connected
+ O3       fd00::2/128 [110/30]
+           via fe80::8001, Ethernet1
+           via fe80::8003, Ethernet2
+           via fe80::8005, Ethernet3
+ O3       fd00::3/128 [110/20]
+           via fe80::8001, Ethernet1
+ O3       fd00::4/128 [110/20]
+           via fe80::8003, Ethernet2
+ O3       fd00::5/128 [110/20]
+           via fe80::8005, Ethernet3
+ C        fd00::8000/127 [0/1]
+           via Ethernet1, directly connected
+ C        fd00::8002/127 [0/1]
+           via Ethernet2, directly connected
+ C        fd00::8004/127 [0/1]
+           via Ethernet3, directly connected
+ O3       fd00::8006/127 [110/20]
+           via fe80::8001, Ethernet1
+ O3       fd00::8008/127 [110/20]
+           via fe80::8003, Ethernet2
+ O3       fd00::8010/127 [110/20]
+           via fe80::8005, Ethernet3
+
+S1#show spanning-tree
+Spanning-tree has been disabled in the configuration.
 ```
 
 ## Конфигурация устройств:
