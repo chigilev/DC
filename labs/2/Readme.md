@@ -135,7 +135,7 @@ show ipv6 ospf database
 show ipv6 route
 show spanning-tree
 
-Пример вывода команд с первого Spine-коммутатора:
+#### Пример вывода команд с первого Spine-коммутатора:
 
 S1#show ipv6 neighbors
 IPv6 Address                                  Age Hardware Addr    State Interface
