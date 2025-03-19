@@ -507,9 +507,6 @@ interface Management1
 !
 no ip routing
 !
-ipv6 prefix-list Loopbacks
-   seq 10 permit fd00::/118 eq 128
-!
 ipv6 unicast-routing
 !
 ipv6 router ospf 1
