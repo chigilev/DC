@@ -583,7 +583,8 @@ router bgp 64512
       neighbor SPINE activate
 !
 end
-
+```
+```
 Leaf-0002#show running-config
 ! Command: show running-config
 ! device: Leaf-0002 (vEOS-lab, EOS-4.29.2F)
@@ -662,8 +663,8 @@ router bgp 64513
       neighbor SPINE activate
 !
 end
-
-
+```
+```
 Leaf-0003#show running-config
 ! Command: show running-config
 ! device: Leaf-0003 (vEOS-lab, EOS-4.29.2F)
@@ -741,8 +742,8 @@ router bgp 64514
       neighbor SPINE activate
 !
 end
-
-
+```
+```
 Spine-0001#show running-config
 ! Command: show running-config
 ! device: Spine-0001 (vEOS-lab, EOS-4.29.2F)
@@ -824,8 +825,8 @@ router bgp 65535
       neighbor LEAF activate
 !
 end
-
-
+```
+```
 Spine-0002#show running-config
 ! Command: show running-config
 ! device: Spine-0002 (vEOS-lab, EOS-4.29.2F)
