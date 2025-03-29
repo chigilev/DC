@@ -12,7 +12,7 @@
 
 #### Топология сети:
 
-![This is an alt text.](Ex_Scheme1.PNG "This is a network topology.")
+![This is an alt text.](Ex_Scheme4.PNG "This is a network topology.")
 
 # Выполнение:
 
