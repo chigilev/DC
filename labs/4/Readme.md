@@ -44,8 +44,8 @@
 * S - номер Spine-коммутатора;
 * Link-local адреса - назначены коммутаторами автоматически.
 
-
 ## Cхема сети:
+
 ![This is an alt text.](Scheme4.PNG "This is a network topology.")
 
 ## Список реализованных рекомендаций:
