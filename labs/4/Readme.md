@@ -655,6 +655,7 @@ router bgp 64513
    neighbor SPINE remote-as 65535
    neighbor SPINE bfd
    neighbor SPINE timers 3 9
+   neighbor SPINE idle-restart-timer 60
    neighbor fe80::5200:ff:fe5a:b32d%Et7 peer group SPINE
    neighbor fe80::5200:ff:fe99:6257%Et8 peer group SPINE
    redistribute connected route-map rm_Lo
@@ -734,6 +735,7 @@ router bgp 64514
    neighbor SPINE remote-as 65535
    neighbor SPINE bfd
    neighbor SPINE timers 3 9
+   neighbor SPINE idle-restart-timer 60
    neighbor fe80::5200:ff:fe5a:b32d%Et7 peer group SPINE
    neighbor fe80::5200:ff:fe99:6257%Et8 peer group SPINE
    redistribute connected route-map rm_Lo
@@ -819,6 +821,7 @@ router bgp 65535
    neighbor LEAF peer group
    neighbor LEAF bfd
    neighbor LEAF timers 3 9
+   neighbor LEAF idle-restart-timer 60
    redistribute connected route-map rm_Lo
    !
    address-family ipv6
@@ -902,6 +905,7 @@ router bgp 65535
    neighbor LEAF peer group
    neighbor LEAF bfd
    neighbor LEAF timers 3 9
+   neighbor LEAF idle-restart-timer 60
    redistribute connected route-map rm_Lo
    !
    address-family ipv6
