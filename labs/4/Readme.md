@@ -135,7 +135,7 @@ show ipv6 bgp installed
 show ipv6 bgp peers received-routes
 show ipv6 route bgp
 show ipv6 bgp fd0::1:1000:2/128 detail
-show bfd peers
+show bfd peers detail
 ```
 
 #### Пример вывода команд с первого Leaf-коммутатора:
@@ -448,18 +448,58 @@ BGP routing table entry for fd0::1:1000:2/128
     fe80::5200:ff:fe5a:b32d%Et7
 	
 
-Leaf-0001#show bfd peers
+Leaf-0001#show bfd peers detail
 VRF name: default
 -----------------
-DstAddr                      MyDisc    YourDisc   Interface/Transport     Type
------------------------- ----------- ----------- --------------------- --------
-fe80::5200:ff:fe5a:b32d  2184601430  2270713445         Ethernet7(19)   normal
-fe80::5200:ff:fe99:6257  2283938878  1351851958         Ethernet8(20)   normal
+Peer Addr fe80::5200:ff:fe5a:b32d, Intf Ethernet7, Type normal, Role active, State Up
+VRF default, LAddr fe80::5200:ff:fe3b:34d4, LD/RD 4072562493/3158022802
+Session state is Up and not using echo function
+Hardware Acceleration: Async Off, Echo Off
+Last Up 03/29/25 13:13:16.477
+Last Down 03/29/25 13:13:12.535
+Last Diag: No Diagnostic
+Authentication mode: None
+Shared-secret profile: None
+TxInt: 100 ms, RxInt: 100 ms, Multiplier: 3
+Received RxInt: 100 ms, Received Multiplier: 3
+Rx Count: 1035, Rx Interval (ms) min/max/avg: 3/215/87 last: 51 ms ago
+Tx Count: 1037, Tx Interval (ms) min/max/avg: 74/113/87 last: 123 ms ago
+Detect Time: 300 ms
+Sched Delay: 1*TxInt: 988, 2*TxInt: 48, 3*TxInt: 0, GT 3*TxInt: 0
+Registered protocols: bgp
+Uptime: 01:30.92
+Last packet:  Version: 1             - Diagnostic: 0
+              State bit: Up          - Demand bit: 0
+              Poll bit: 0            - Final bit: 0
+              Multiplier: 3          - Length: 24
+              My Discr.: 3158022802  - Your Discr.: 4072562493
+              Min tx interval: 100   - Min rx interval: 100
+              Min Echo interval: 100
 
-           LastUp             LastDown            LastDiag    State
--------------------- -------------------- ------------------- -----
-   03/29/25 11:18       03/29/25 11:18       No Diagnostic       Up
-   03/29/25 11:18       03/29/25 11:18       No Diagnostic       Up
+Peer Addr fe80::5200:ff:fe99:6257, Intf Ethernet8, Type normal, Role active, State Up
+VRF default, LAddr fe80::5200:ff:fe3b:34d4, LD/RD 2212644431/3464832443
+Session state is Up and not using echo function
+Hardware Acceleration: Async Off, Echo Off
+Last Up 03/29/25 13:13:38.804
+Last Down 03/29/25 13:13:34.208
+Last Diag: No Diagnostic
+Authentication mode: None
+Shared-secret profile: None
+TxInt: 100 ms, RxInt: 100 ms, Multiplier: 3
+Received RxInt: 100 ms, Received Multiplier: 3
+Rx Count: 787, Rx Interval (ms) min/max/avg: 3/231/86 last: 130 ms ago
+Tx Count: 781, Tx Interval (ms) min/max/avg: 75/100/87 last: 72 ms ago
+Detect Time: 300 ms
+Sched Delay: 1*TxInt: 750, 2*TxInt: 30, 3*TxInt: 0, GT 3*TxInt: 0
+Registered protocols: bgp
+Uptime: 01:08.65
+Last packet:  Version: 1             - Diagnostic: 0
+              State bit: Up          - Demand bit: 0
+              Poll bit: 0            - Final bit: 0
+              Multiplier: 3          - Length: 24
+              My Discr.: 3464832443  - Your Discr.: 2212644431
+              Min tx interval: 100   - Min rx interval: 100
+              Min Echo interval: 100
 ```
 
 ## Конфигурации устройств:
@@ -481,23 +521,31 @@ hostname Leaf-0001
 spanning-tree mode mstp
 !
 interface Ethernet1
+   description VPC1
 !
 interface Ethernet2
+   shutdown
 !
 interface Ethernet3
+   shutdown
 !
 interface Ethernet4
+   shutdown
 !
 interface Ethernet5
+   shutdown
 !
 interface Ethernet6
+   shutdown
 !
 interface Ethernet7
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Ethernet8
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Loopback0
@@ -536,7 +584,6 @@ router bgp 64512
 !
 end
 
-
 Leaf-0002#show running-config
 ! Command: show running-config
 ! device: Leaf-0002 (vEOS-lab, EOS-4.29.2F)
@@ -554,23 +601,31 @@ hostname Leaf-0002
 spanning-tree mode mstp
 !
 interface Ethernet1
+   description VPC2
 !
 interface Ethernet2
+   shutdown
 !
 interface Ethernet3
+   shutdown
 !
 interface Ethernet4
+   shutdown
 !
 interface Ethernet5
+   shutdown
 !
 interface Ethernet6
+   shutdown
 !
 interface Ethernet7
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Ethernet8
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Loopback0
@@ -626,23 +681,31 @@ hostname Leaf-0003
 spanning-tree mode mstp
 !
 interface Ethernet1
+   description VPC3
 !
 interface Ethernet2
+   description VPC4
 !
 interface Ethernet3
+   shutdown
 !
 interface Ethernet4
+   shutdown
 !
 interface Ethernet5
+   shutdown
 !
 interface Ethernet6
+   shutdown
 !
 interface Ethernet7
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Ethernet8
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Loopback0
@@ -698,25 +761,33 @@ spanning-tree mode none
 !
 interface Ethernet1
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Ethernet2
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Ethernet3
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Ethernet4
+   shutdown
 !
 interface Ethernet5
+   shutdown
 !
 interface Ethernet6
+   shutdown
 !
 interface Ethernet7
+   shutdown
 !
 interface Ethernet8
+   shutdown
 !
 interface Loopback0
    ipv6 enable
@@ -773,25 +844,33 @@ spanning-tree mode none
 !
 interface Ethernet1
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Ethernet2
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Ethernet3
    no switchport
+   bfd interval 100 min-rx 100 multiplier 3
    ipv6 enable
 !
 interface Ethernet4
+   shutdown
 !
 interface Ethernet5
+   shutdown
 !
 interface Ethernet6
+   shutdown
 !
 interface Ethernet7
+   shutdown
 !
 interface Ethernet8
+   shutdown
 !
 interface Loopback0
    ipv6 enable
