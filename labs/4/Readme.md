@@ -124,7 +124,7 @@ rtt min/avg/max/mdev = 18.943/19.553/20.163/0.610 ms, pipe 2, ipg/ewma 15.484/20
 ```
 
 ## Листинг команд с примерами вывода:
-
+#### Листинг:
 ```
 show ipv6 interface brief
 show ipv6 neighbors
