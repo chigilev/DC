@@ -133,6 +133,7 @@ show ipv6 bgp peers
 show bgp peer-group
 show ipv6 bgp installed
 show ipv6 bgp peers received-routes
+show ipv6 bgp peers (fe80::A:B:C:D%<interface>) advertised-routes
 show ipv6 route bgp
 show ipv6 bgp detail
 show bfd peers detail
@@ -384,8 +385,8 @@ AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Li
  *  ec   fd0::1:1000:3/128      fe80::5200:ff:fe99:6257%Et8 0       100     0      65535 64514 i
  * >     fd0::1:2000:1/128      fe80::5200:ff:fe5a:b32d%Et7 0       100     0      65535 i
  * >     fd0::1:2000:2/128      fe80::5200:ff:fe99:6257%Et8 0       100     0      65535 i
- ```
- ```
+```
+```
 Leaf-0001#show ipv6 bgp peers received-routes
 BGP routing table information for VRF default
 Router identifier 1.1.1.1, local AS number 64512
@@ -403,6 +404,34 @@ AS Path Attributes: Or-ID - Originator ID, C-LST -Cluster List, LL Nexthop - Lin
  *  ec   fd0::1:1000:3/128   fe80::5200:ff:fe5a:b32d%Et7 -       -       -       65535 64514 i
  * >     fd0::1:2000:1/128   fe80::5200:ff:fe5a:b32d%Et7 -       -       -       65535 i
  * >     fd0::1:2000:2/128   fe80::5200:ff:fe99:6257%Et8 -       -       -       65535 i
+```
+```
+Leaf-0001#show ipv6 bgp peers fe80::5200:ff:fe5a:b32d%Et7 advertised-routes
+BGP routing table information for VRF default
+Router identifier 1.1.1.1, local AS number 64512
+Route status codes: * - valid, > - active, # - not installed, E - ECMP head, e - ECMP
+                    S - Stale, c - Contributing to ECMP, b - backup, L - labeled-unicast
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+         Network                Next Hop            Metric  LocPref Weight  Path
+ * >     fd0::1:1000:1/128      fe80::5200:ff:fe3b:34d4%Et7 -       -       -       64512 i
+ * >Ec   fd0::1:1000:2/128      fe80::5200:ff:fe3b:34d4%Et7 -       -       -       64512 65535 64513 i
+ * >Ec   fd0::1:1000:3/128      fe80::5200:ff:fe3b:34d4%Et7 -       -       -       64512 65535 64514 i
+ * >     fd0::1:2000:2/128      fe80::5200:ff:fe3b:34d4%Et7 -       -       -       64512 65535 i
+
+
+Leaf-0001#show ipv6 bgp peers fe80::5200:ff:fe99:6257%Et8 advertised-routes
+BGP routing table information for VRF default
+Router identifier 1.1.1.1, local AS number 64512
+Route status codes: * - valid, > - active, # - not installed, E - ECMP head, e - ECMP
+                    S - Stale, c - Contributing to ECMP, b - backup, L - labeled-unicast
+Origin codes: i - IGP, e - EGP, ? - incomplete
+AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Link Local Nexthop
+
+         Network                Next Hop            Metric  LocPref Weight  Path
+ * >     fd0::1:1000:1/128      fe80::5200:ff:fe3b:34d4%Et8 -       -       -       64512 i
+ * >     fd0::1:2000:1/128      fe80::5200:ff:fe3b:34d4%Et8 -       -       -       64512 65535 i
 ```
 ```
 Leaf-0001#show ipv6 route bgp
