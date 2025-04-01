@@ -60,7 +60,7 @@
 * Суммировать маршруты только на Leaf-коммутаторах;
 * Сохранять конфигурацию минимально необходимой и простой.
 
-В целях унификации конфигурации в фабрике выбрана клинт-северная архитектура: Leaf-коммутаторы выступают в качестве клиента, подключаясь к Spine-коммутаторам по единым link-local адресам интерфесов Spine-коммутаторов и единому номеру AS Spine-коммутаторов (65535), в свою очередь Spine-коммутаторы как серверы "слушают" запросы клиентов - Leaf-коммутаторов и устанавливают соединение, отвечающее критериям клиента: диапазон адресов соседств - адреса из диапазона link-local EUI-64 (fe80::/64) и ASN соседа - из диапазона, зарезервированного под Leaf-коммутаторы (64512-65512). В целях упрощения конфигурации - применена шаблонизация с помощью peer group.
+В целях унификации конфигурации в фабрике выбрана клинт-северная архитектура: Leaf-коммутаторы выступают в качестве клиента, подключаясь к Spine-коммутаторам по единым link-local адресам интерфесов Spine-коммутаторов и единому номеру AS Spine-коммутаторов (65535), в свою очередь Spine-коммутаторы как серверы "слушают" запросы клиентов - Leaf-коммутаторов и устанавливают соединение, отвечающее критериям клиента: диапазон адресов соседств - адреса из диапазона link-local EUI-64 (fe80::/64) и ASN соседа - из диапазона, зарезервированного под Leaf-коммутаторы (64512-65512). В целях упрощения конфигурации - применена шаблонизация с помощью peer group. Таким образом все Leaf-коммутаторы имеют идентичную конфигурацию, так же как и Spine-коммутаторы.
 
 Дополнительно был отключен протокол STP на Spine-коммутаторах. Во избежании петель в рамках одного Leaf-коммутаторовна, подобных настроек на оных не производилось.
 
@@ -134,7 +134,7 @@ show bgp peer-group
 show ipv6 bgp installed
 show ipv6 bgp peers received-routes
 show ipv6 route bgp
-show ipv6 bgp fd0::1:1000:2/128 detail
+show ipv6 bgp detail
 show bfd peers detail
 ```
 
@@ -428,24 +428,47 @@ Codes: C - connected, S - static, K - kernel, O3 - OSPFv3,
            via fe80::5200:ff:fe99:6257, Ethernet8
 
 
-Leaf-0001#show ipv6 bgp fd0::1:1000:2/128 detail
+Leaf-0001#show ipv6 bgp detail
 BGP routing table information for VRF default
 Router identifier 1.1.1.1, local AS number 64512
-Route status: [a.b.c.d] - Route is  queued for advertisement to peer.
+BGP routing table entry for fd0::1:1000:1/128
+ Paths: 1 available
+  Local
+    - from - (1.1.1.1)
+      Origin IGP, metric 0, localpref 0, IGP metric -, weight -, received 4d17h ago, valid, local, best, redistributed (Connected)
+      Rx SAFI: Unicast
 BGP routing table entry for fd0::1:1000:2/128
  Paths: 2 available
   65535 64513
-    fe80::5200:ff:fe99:6257%Et8 from fe80::5200:ff:fe99:6257%Et8 (1.2.1.2)
-      Origin IGP, metric 0, localpref 100, IGP metric 1, weight 0, received 09:41:05 ago, valid, external, ECMP head, ECMP, best, ECMP contributor
+    fe80::5200:ff:fe5a:b32d%Et7 from fe80::5200:ff:fe5a:b32d%Et7 (1.2.1.1)
+      Origin IGP, metric 0, localpref 100, IGP metric 1, weight 0, received 00:08:46 ago, valid, external, ECMP head, best, ECMP contributor
       Rx SAFI: Unicast
   65535 64513
-    fe80::5200:ff:fe5a:b32d%Et7 from fe80::5200:ff:fe5a:b32d%Et7 (1.2.1.1)
-      Origin IGP, metric 0, localpref 100, IGP metric 1, weight 0, received 08:54:48 ago, valid, external, ECMP, ECMP contributor
+    fe80::5200:ff:fe99:6257%Et8 from fe80::5200:ff:fe99:6257%Et8 (1.2.1.2)
+      Origin IGP, metric 0, localpref 100, IGP metric 1, weight 0, received 00:02:48 ago, valid, external, ECMP, ECMP contributor
       Rx SAFI: Unicast
-      Not best: ECMP-Fast configured
- Advertised to 1 peers:
-  peer-group SPINE:
-    fe80::5200:ff:fe5a:b32d%Et7
+BGP routing table entry for fd0::1:1000:3/128
+ Paths: 2 available
+  65535 64514
+    fe80::5200:ff:fe5a:b32d%Et7 from fe80::5200:ff:fe5a:b32d%Et7 (1.2.1.1)
+      Origin IGP, metric 0, localpref 100, IGP metric 1, weight 0, received 00:08:46 ago, valid, external, ECMP head, best, ECMP contributor
+      Rx SAFI: Unicast
+  65535 64514
+    fe80::5200:ff:fe99:6257%Et8 from fe80::5200:ff:fe99:6257%Et8 (1.2.1.2)
+      Origin IGP, metric 0, localpref 100, IGP metric 1, weight 0, received 00:02:48 ago, valid, external, ECMP, ECMP contributor
+      Rx SAFI: Unicast
+BGP routing table entry for fd0::1:2000:1/128
+ Paths: 1 available
+  65535
+    fe80::5200:ff:fe5a:b32d%Et7 from fe80::5200:ff:fe5a:b32d%Et7 (1.2.1.1)
+      Origin IGP, metric 0, localpref 100, IGP metric 1, weight 0, received 00:08:46 ago, valid, external, best
+      Rx SAFI: Unicast
+BGP routing table entry for fd0::1:2000:2/128
+ Paths: 1 available
+  65535
+    fe80::5200:ff:fe99:6257%Et8 from fe80::5200:ff:fe99:6257%Et8 (1.2.1.2)
+      Origin IGP, metric 0, localpref 100, IGP metric 1, weight 0, received 00:02:48 ago, valid, external, best
+      Rx SAFI: Unicast
 	
 
 Leaf-0001#show bfd peers detail
@@ -556,28 +579,18 @@ interface Management1
 !
 no ip routing
 !
-ipv6 prefix-list pl_Lo
-   seq 0 permit fd0::/95 eq 128
-!
 ipv6 unicast-routing
-!
-route-map rm_Lo permit 10
-   match ipv6 address prefix-list pl_Lo
-!
-route-map rm_Lo deny 20
 !
 router bgp 64512
    router-id 1.1.1.1
    no bgp default ipv4-unicast
    maximum-paths 8
    neighbor SPINE peer group
-   neighbor SPINE remote-as 65535
    neighbor SPINE bfd
    neighbor SPINE timers 3 9
    neighbor SPINE idle-restart-timer 60
-   neighbor fe80::5200:ff:fe5a:b32d%Et7 peer group SPINE
-   neighbor fe80::5200:ff:fe99:6257%Et8 peer group SPINE
-   redistribute connected route-map rm_Lo
+   redistribute connected
+   neighbor interface Et7-8 peer-group SPINE remote-as 65535
    !
    address-family ipv6
       neighbor SPINE activate
@@ -637,28 +650,18 @@ interface Management1
 !
 no ip routing
 !
-ipv6 prefix-list pl_Lo
-   seq 0 permit fd0::/95 eq 128
-!
 ipv6 unicast-routing
-!
-route-map rm_Lo permit 10
-   match ipv6 address prefix-list pl_Lo
-!
-route-map rm_Lo deny 20
 !
 router bgp 64513
    router-id 1.1.1.2
    no bgp default ipv4-unicast
    maximum-paths 8
    neighbor SPINE peer group
-   neighbor SPINE remote-as 65535
    neighbor SPINE bfd
    neighbor SPINE timers 3 9
    neighbor SPINE idle-restart-timer 60
-   neighbor fe80::5200:ff:fe5a:b32d%Et7 peer group SPINE
-   neighbor fe80::5200:ff:fe99:6257%Et8 peer group SPINE
-   redistribute connected route-map rm_Lo
+   redistribute connected
+   neighbor interface Et7-8 peer-group SPINE remote-as 65535
    !
    address-family ipv6
       neighbor SPINE activate
@@ -718,27 +721,18 @@ interface Management1
 !
 no ip routing
 !
-ipv6 prefix-list pl_Lo
-   seq 0 permit fd0::/95 eq 128
-!
 ipv6 unicast-routing
-!
-route-map rm_Lo permit 10
-   match ipv6 address prefix-list pl_Lo
-!
-route-map rm_Lo deny 20
 !
 router bgp 64514
    router-id 1.1.1.3
-   maximum-paths 10
+   no bgp default ipv4-unicast
+   maximum-paths 8
    neighbor SPINE peer group
-   neighbor SPINE remote-as 65535
    neighbor SPINE bfd
    neighbor SPINE timers 3 9
    neighbor SPINE idle-restart-timer 60
-   neighbor fe80::5200:ff:fe5a:b32d%Et7 peer group SPINE
-   neighbor fe80::5200:ff:fe99:6257%Et8 peer group SPINE
-   redistribute connected route-map rm_Lo
+   redistribute connected
+   neighbor interface Et7-8 peer-group SPINE remote-as 65535
    !
    address-family ipv6
       neighbor SPINE activate
@@ -800,19 +794,10 @@ interface Management1
 !
 no ip routing
 !
-ipv6 prefix-list pl_Lo
-   seq 0 permit fd0::/95 eq 128
-!
 ipv6 unicast-routing
-!
-route-map rm_Lo permit 10
-   match ipv6 address prefix-list pl_Lo
-!
-route-map rm_Lo deny 20
 !
 peer-filter pf_accept_leaf_as-range
    10 match as-range 64512-65512 result accept
-   20 match as-range 1-4294967295 result reject
 !
 router bgp 65535
    router-id 1.2.1.1
@@ -822,7 +807,7 @@ router bgp 65535
    neighbor LEAF bfd
    neighbor LEAF timers 3 9
    neighbor LEAF idle-restart-timer 60
-   redistribute connected route-map rm_Lo
+   redistribute connected
    !
    address-family ipv6
       neighbor LEAF activate
@@ -884,19 +869,10 @@ interface Management1
 !
 no ip routing
 !
-ipv6 prefix-list pl_Lo
-   seq 0 permit fd0::/95 eq 128
-!
 ipv6 unicast-routing
-!
-route-map rm_Lo permit 10
-   match ipv6 address prefix-list pl_Lo
-!
-route-map rm_Lo deny 20
 !
 peer-filter pf_accept_leaf_as-range
    10 match as-range 64512-65512 result accept
-   20 match as-range 1-4294967295 result reject
 !
 router bgp 65535
    router-id 1.2.1.2
@@ -906,7 +882,7 @@ router bgp 65535
    neighbor LEAF bfd
    neighbor LEAF timers 3 9
    neighbor LEAF idle-restart-timer 60
-   redistribute connected route-map rm_Lo
+   redistribute connected
    !
    address-family ipv6
       neighbor LEAF activate
