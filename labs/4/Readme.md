@@ -154,8 +154,8 @@ Leaf-0001#show ipv6 neighbors
 IPv6 Address                                  Age Hardware Addr    State Interface
 fe80::5200:ff:fe5a:b32d                   0:00:00 5000.005a.b32d   REACH Et7
 fe80::5200:ff:fe99:6257                   0:00:01 5000.0099.6257   REACH Et8
-
-
+```
+```
 Leaf-0001#show ipv6 bgp summary
 BGP summary information for VRF default
 Router identifier 1.1.1.1, local AS number 64512
@@ -163,8 +163,8 @@ Neighbor Status Codes: m - Under maintenance
   Neighbor         V  AS           MsgRcvd   MsgSent  InQ OutQ  Up/Down State   PfxRcd PfxAcc
   fe80::5200:ff:fe5a:b32d%Et7 4  65535          19977     19976    0    0 15:02:03 Estab   3      3
   fe80::5200:ff:fe99:6257%Et8 4  65535          18973     18979    0    0 15:48:20 Estab   3      3
-
-
+```
+```
 Leaf-0001#show ipv6 bgp peers
 BGP neighbor is fe80::5200:ff:fe5a:b32d%Et7, remote AS 65535, external link
   BGP version 4, remote router ID 1.2.1.1, VRF default
@@ -347,8 +347,8 @@ TCP Socket Information:
     TCP Throughput: 6.79 Mbps
     Recv Round-trip Time (rcv_rtt): 527331.4ms
     Advertised Recv Window (rcv_space): 64952
-
-
+```
+```
 Leaf-0001#show bgp peer-group
 BGP peer-group is SPINE, remote AS 65535, peer-group external
   BGP version 4
@@ -366,8 +366,8 @@ BGP peer-group is SPINE, remote AS 65535, peer-group external
             IPv6 Unicast: Yes
             IPv4 SR-TE: No
             IPv6 SR-TE: No
-
-
+```
+```
 Leaf-0001#show ipv6 bgp installed
 BGP routing table information for VRF default
 Router identifier 1.1.1.1, local AS number 64512
@@ -384,8 +384,8 @@ AS Path Attributes: Or-ID - Originator ID, C-LST - Cluster List, LL Nexthop - Li
  *  ec   fd0::1:1000:3/128      fe80::5200:ff:fe99:6257%Et8 0       100     0      65535 64514 i
  * >     fd0::1:2000:1/128      fe80::5200:ff:fe5a:b32d%Et7 0       100     0      65535 i
  * >     fd0::1:2000:2/128      fe80::5200:ff:fe99:6257%Et8 0       100     0      65535 i
- 
- 
+ ```
+ ```
 Leaf-0001#show ipv6 bgp peers received-routes
 BGP routing table information for VRF default
 Router identifier 1.1.1.1, local AS number 64512
@@ -403,8 +403,8 @@ AS Path Attributes: Or-ID - Originator ID, C-LST -Cluster List, LL Nexthop - Lin
  *  ec   fd0::1:1000:3/128   fe80::5200:ff:fe5a:b32d%Et7 -       -       -       65535 64514 i
  * >     fd0::1:2000:1/128   fe80::5200:ff:fe5a:b32d%Et7 -       -       -       65535 i
  * >     fd0::1:2000:2/128   fe80::5200:ff:fe99:6257%Et8 -       -       -       65535 i
-
-
+```
+```
 Leaf-0001#show ipv6 route bgp
 
 VRF: default
@@ -426,8 +426,8 @@ Codes: C - connected, S - static, K - kernel, O3 - OSPFv3,
            via fe80::5200:ff:fe5a:b32d, Ethernet7
  B E      fd0::1:2000:2/128 [200/0]
            via fe80::5200:ff:fe99:6257, Ethernet8
-
-
+```
+```
 Leaf-0001#show ipv6 bgp detail
 BGP routing table information for VRF default
 Router identifier 1.1.1.1, local AS number 64512
@@ -469,8 +469,8 @@ BGP routing table entry for fd0::1:2000:2/128
     fe80::5200:ff:fe99:6257%Et8 from fe80::5200:ff:fe99:6257%Et8 (1.2.1.2)
       Origin IGP, metric 0, localpref 100, IGP metric 1, weight 0, received 00:02:48 ago, valid, external, best
       Rx SAFI: Unicast
-	
-
+```	
+```
 Leaf-0001#show bfd peers detail
 VRF name: default
 -----------------
