@@ -802,6 +802,7 @@ peer-filter pf_accept_leaf_as-range
 router bgp 65535
    router-id 1.2.1.1
    no bgp default ipv4-unicast
+   maximum-paths 8
    bgp listen range fe80::/64 peer-group LEAF peer-filter pf_accept_leaf_as-range
    neighbor LEAF peer group
    neighbor LEAF bfd
@@ -877,6 +878,7 @@ peer-filter pf_accept_leaf_as-range
 router bgp 65535
    router-id 1.2.1.2
    no bgp default ipv4-unicast
+   maximum-paths 8
    bgp listen range fe80::/64 peer-group LEAF peer-filter pf_accept_leaf_as-range
    neighbor LEAF peer group
    neighbor LEAF bfd
