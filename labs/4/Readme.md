@@ -141,7 +141,7 @@ show bfd peers detail
 #### Пример вывода команд с первого Leaf-коммутатора:
 
 ```
-Leaf-0001#show ipv6 interface brief
+Leaf-0001#__show ipv6 interface brief__
 Interface  Status    MTU   IPv6 Address                 Addr State  Addr Source
 ---------- ------- ------ ---------------------------- ------------ -----------
 Et7        up       1500   fe80::5200:ff:fe3b:34d4/64   up          link local
