@@ -21,10 +21,11 @@
 1) Выделить адресное пространство для endpoint-ов;
 2) Зафиксировать значения для Overlay-сети;
 3) Собрать схему сети согласно топологии представленной в задании;
-4) Настроить Overlay: VXLAN с EVPN для L2 VNI (MAC-VRF).
-5) Опубликовать листинг команд для проверки корректной работы сети;
+4) Опубликовать список реализованных функций Overlay-сети (Control- и Data-plane) для реализации L2 VNI (MAC-VRF);
+5) Проверить связность между VPC;
 6) Вывести дамп трафика проходящего через фабрику;
-7) Конфигурации устройств.
+7) Опубликовать листинг команд для проверки корректной работы сети;
+8) Конфигурации устройств.
 
 Используем Underlay-сеть построенную в предыдущем задании.
 
@@ -67,6 +68,12 @@
 ![This is an alt text.](Test1.PNG "This is a network connectivity test.")
 
 ![This is an alt text.](Test2.PNG "This is a network connectivity test.")
+
+## Дамп трафика:
+
+![This is an alt text.](Dump1.PNG "This is a dump ICMPv6.")
+
+![This is an alt text.](Dump2.PNG "This is a dump ICMPv6.")
 
 ## Листинг команд с примерами вывода:
 #### Листинг:
@@ -231,13 +238,6 @@ Vlan    Mac Address       Type        Ports
 ----    -----------       ----        -----
 Total Mac Addresses for this criterion: 0
 ```
-
-#### Дамп трафика:
-
-![This is an alt text.](Dump1.PNG "This is a dump ICMPv6.")
-
-![This is an alt text.](Dump2.PNG "This is a dump ICMPv6.")
-
 
 ## Конфигурации устройств:
 ```
