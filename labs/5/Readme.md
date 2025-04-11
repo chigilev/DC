@@ -73,14 +73,19 @@
 #### Порядок следования:
 ![This is an alt text.](Dump9.PNG "This is a dump ICMPv6.")
 #### BGP EVPN:
+
 * С Leaf-0001 в сторону Spine-0001:
+
 ![This is an alt text.](Dump3.PNG "This is a dump ICMPv6.")
 ![This is an alt text.](Dump4.PNG "This is a dump ICMPv6.")
 ![This is an alt text.](Dump5.PNG "This is a dump ICMPv6.")
+
 * С Spine-0001 в сторону Leaf-0001:
+
 ![This is an alt text.](Dump6.PNG "This is a dump ICMPv6.")
 ![This is an alt text.](Dump7.PNG "This is a dump ICMPv6.")
 ![This is an alt text.](Dump8.PNG "This is a dump ICMPv6.")
+
 #### ICMPv6 энкапсулированные в VXLAN:
 ![This is an alt text.](Dump1.PNG "This is a dump ICMPv6.")
 
