@@ -948,11 +948,6 @@ VLANS                            Ip Address
 -----------------------------   ------------------------------------------------
 10                              fd0::1:1000:3
 
-Leaf-0002#show vxlan control-plane
-   VLAN       Control Plane       Direction    Source
----------- ------------------- --------------- -------------
-   20         EVPN                both         configuration
-
 Leaf-0002#show vxlan flood vtep
           VXLAN Flood VTEP Table
 --------------------------------------------------------------------------------
@@ -960,12 +955,6 @@ Leaf-0002#show vxlan flood vtep
 VLANS                            Ip Address
 -----------------------------   ------------------------------------------------
 20                              fd0::1:1000:3
-
-Leaf-0003#show vxlan control-plane
-   VLAN       Control Plane       Direction    Source
----------- ------------------- --------------- -------------
-   10         EVPN                both         configuration
-   20         EVPN                both         configuration
 
 Leaf-0003#show vxlan flood vtep
           VXLAN Flood VTEP Table
