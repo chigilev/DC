@@ -967,7 +967,6 @@ Leaf-0003#show vxlan control-plane
    10         EVPN                both         configuration
    20         EVPN                both         configuration
 
-Leaf-0003#
 Leaf-0003#show vxlan flood vtep
           VXLAN Flood VTEP Table
 --------------------------------------------------------------------------------
@@ -1107,7 +1106,6 @@ R - receive, F - FIB, A - attached
                               on Vlan20
 ```
 ```
-Leaf-0001#
 Leaf-0001#show vxlan address-table
           Vxlan Mac Address Table
 ----------------------------------------------------------------------
