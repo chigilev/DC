@@ -100,9 +100,9 @@
 ![This is an alt text.](Dump4_2_1(icmpv6_VPC3_to_VPC2__Spine-0001_to_Leaf-0003)_BGP_UPD_2_MP_RICH_NLRI.PNG "This is a dump BGP EVPN MP_RICH_NLRI.")
 ![This is an alt text.](Dump4_2_2(icmpv6_VPC3_to_VPC2__Spine-0001_to_Leaf-0003)_BGP_UPD_2_EXT_COMM.PNG "This is a dump BGP EVPN EXT_COMM.")
 ### 2) ICMPv6 Request- и Replay-сообщения
-![This is an alt text.](Dump5(icmpv6_VPC3_to_VPC2_rep).PNG "This is a dump ICMPv6 Replay.")
-
 ![This is an alt text.](Dump5(icmpv6_VPC3_to_VPC2_req).PNG "This is a dump ICMPv6 Request.")
+
+![This is an alt text.](Dump5(icmpv6_VPC3_to_VPC2_rep).PNG "This is a dump ICMPv6 Replay.")
 
 ## Листинг команд с примерами вывода:
 #### Листинг:
