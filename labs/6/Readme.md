@@ -55,7 +55,7 @@
 
 ## Cхема сети:
 
-![This is an alt text.](Scheme5.PNG "This is a network topology.")
+![This is an alt text.](Scheme6.PNG "This is a network topology.")
 
 ## Список реализованных функций:
 
