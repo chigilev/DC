@@ -78,7 +78,7 @@
 
 ![This is an alt text.](ICMP_Server2.PNG "This is a network connectivity test.")
 
-![This is an alt text.](ICMP_Server2.PNG "This is a network connectivity test.")
+![This is an alt text.](ICMP_Server3.PNG "This is a network connectivity test.")
 
 ## Дамп трафика (при отключении/включении порта Ethetnet2 на Server2):
 ### 1) Отключение порта
