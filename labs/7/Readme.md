@@ -88,7 +88,7 @@
 ![This is an alt text.](Dump2_1_MP_UNRICH_NLRI_MAC+IP.PNG "This is a dump BGP EVPN MP_UNRICH_NLRI RT2 withdrawn routes.")
 ![This is an alt text.](Dump2_2_MP_UNRICH_NLRI_MAC+IP.PNG "This is a dump BGP EVPN MP_UNRICH_NLRI RT2 withdrawn routes.")
 ##### Update-сообщение MP_UNRICH_NLRI (withdrawn routes) соответствующих IP-адресов интерфесов Server2 Overlay-сегмента отправленные из фабрики к Leaf-0003 - Route Type 2 (MAC/IP advertisement route):
-![This is an alt text.](Dump3_MP_UNRICH_NLRI_MAC_IP.PNG "This is a dump BGP EVPN MP_UNRICH_NLRI RT2 withdrawn routes.")
+![This is an alt text.](Dump3_MP_UNRICH_NLRI_MAC_IP_HOST_ROUTES.PNG "This is a dump BGP EVPN MP_UNRICH_NLRI RT2 withdrawn routes.")
 ### 2) Включение порта
 ##### Update-сообщение MP_RICH_NLRI соответствующиe ESI-сегменту для Server2 отправленные Leaf-0003 в фабрику - Route Type 1 (Ethernet auto-discovery) и Route Type 4 (Ethernet segment route):
 ![This is an alt text.](Dump4_1_MP_RICH_NLRI_part_RT1.PNG "This is a dump BGP EVPN MP_RICH_NLRI RT1.")
