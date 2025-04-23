@@ -115,7 +115,7 @@
 ![This is an alt text.](From_Server3_to_External_Network_via_DefaultRoute.PNG "This is a network connectivity test.")
 
 ## Дамп трафика:
-### 1.1) При удалении маршрута по-умолчанию на Router-1
+### 1.1) При удалении маршрута по-умолчанию - ::/0 на Router-1
 #### BGP Update-сообщения MP_UNREACH_NLRI (Withdrawn routes, Unicast) получаемые коммутатором Leaf-0003 от Router-1 в каждом VRF:
 ![This is an alt text.](Dump1_BGP_Unicast_MP_UNREACH_NLRI__vrf_sIRB_no_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump1")
 ![This is an alt text.](Dump2_BGP_Unicast_MP_UNREACH_NLRI__vrf_sIRB-2_no_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump2")
@@ -124,7 +124,7 @@
 ![This is an alt text.](Dump4_BGP_EVPN_RT5_MP_UNREACH_NLRI__vrf_sIRB_no_DefaultRoute_Spine-0002_to_Leaf-0002.PNG "This is a Dump4")
 ![This is an alt text.](Dump5_BGP_EVPN_RT5_MP_UNREACH_NLRI__vrf_sIRB-2_no_DefaultRoute_Spine-0002_to_Leaf-0002.PNG "This is a Dump5")
 ![This is an alt text.](Dump6_BGP_EVPN_RT5_MP_UNREACH_NLRI__vrf_sIRB-3_no_DefaultRoute_Spine-0002_to_Leaf-0002.PNG "This is a Dump3")
-### 1.2) При восстановлении маршрута по-умолчанию на Router-1
+### 1.2) При восстановлении маршрута по-умолчанию - ::/0 на Router-1
 #### BGP Update-сообщения MP_REACH_NLRI (Unicast) получаемые коммутатором Leaf-0003 от Router-1 в каждом VRF:
 ![This is an alt text.](Dump7_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump7")
 ![This is an alt text.](Dump8_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB-3_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump8")
