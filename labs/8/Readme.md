@@ -73,6 +73,7 @@
 | Router-1 | Loopback997 | GRT | 2000:997::997/128 |
 | Router-1 | Loopback998 | GRT | 2000:998::998/128 |
 | Router-1 | Loopback999 | GRT | 2000:999::999/128 |
+| Router-1 | Null0 | GRT | ::/0 |
 
 ## Параметры ESI для серверов:
 
