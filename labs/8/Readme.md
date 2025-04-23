@@ -108,7 +108,57 @@
 
 ![This is an alt text.](From_Server3.PNG "This is a network connectivity test.")
 
-## Дамп трафика: (в разработке)
+![This is an alt text.](From_Server1_to_External_Network_via_DefaultRoute.PNG "This is a network connectivity test.")
+
+![This is an alt text.](From_Server2_to_External_Network_via_DefaultRoute.PNG "This is a network connectivity test.")
+
+![This is an alt text.](From_Server3_to_External_Network_via_DefaultRoute.PNG "This is a network connectivity test.")
+
+## Дамп трафика:
+### 1.1) При удалении маршрута по-умолчанию на Router-1
+#### BGP Update-сообщения MP_UNREACH_NLRI (Withdrawn routes, Unicast) получаемые коммутатором Leaf-0003 от Router-1 в каждом VRF:
+![This is an alt text.](Dump1_BGP_Unicast_MP_UNREACH_NLRI__vrf_sIRB_no_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump1")
+![This is an alt text.](Dump2_BGP_Unicast_MP_UNREACH_NLRI__vrf_sIRB-2_no_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump2")
+![This is an alt text.](Dump3_BGP_Unicast_MP_UNREACH_NLRI__vrf_sIRB-3_no_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump3")
+#### BGP Update-сообщения MP_UNREACH_NLRI (Withdrawn routes, EVPN Type-5) получаемые коммутатором Leaf-0002 от Spine-0002 в каждом VRF:
+![This is an alt text.](Dump4_BGP_EVPN_RT5_MP_UNREACH_NLRI__vrf_sIRB_no_DefaultRoute_Spine-0002_to_Leaf-0002.PNG "This is a Dump4")
+![This is an alt text.](Dump5_BGP_EVPN_RT5_MP_UNREACH_NLRI__vrf_sIRB-2_no_DefaultRoute_Spine-0002_to_Leaf-0002.PNG "This is a Dump5")
+![This is an alt text.](Dump6_BGP_EVPN_RT5_MP_UNREACH_NLRI__vrf_sIRB-3_no_DefaultRoute_Spine-0002_to_Leaf-0002.PNG "This is a Dump3")
+### 1.2) При восстановлении маршрута по-умолчанию на Router-1
+#### BGP Update-сообщения MP_REACH_NLRI (Unicast) получаемые коммутатором Leaf-0003 от Router-1 в каждом VRF:
+![This is an alt text.](Dump7_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump7")
+![This is an alt text.](Dump8_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB-3_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump8")
+![This is an alt text.](Dump9_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB-2_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump9")
+#### BGP Update-сообщения MP_REACH_NLRI (EVPN Type-5) получаемые коммутатором Leaf-0002 от Spine-0002 в каждом VRF:
+![This is an alt text.](Dump10_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB-2_DefaultRoute_Spine-0002_to_Leaf-0002_1.PNG "This is a Dump10")
+![This is an alt text.](Dump11_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB-3_DefaultRoute_Spine-0002_to_Leaf-0002_2.PNG "This is a Dump11")
+![This is an alt text.](Dump12_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB_DefaultRoute_Spine-0002_to_Leaf-0002_3.PNG "This is a Dump12")
+
+### 2.1) При удалении агрегации в префикс - 1200::/16 на Router-1
+#### BGP Update-сообщения MP_REACH_NLRI (Unicast) получаемые коммутатором Leaf-0003 от Router-1 в VRF sIRB и sIRB-3, содержащие два префикса - 1200::/17 и 1200:8000::/17:
+![This is an alt text.](Dump13_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB_DisaggregateRoute_Router-1_to_Leaf-0003.PNG "This is a Dump13")
+![This is an alt text.](Dump14_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB-3_DisaggregateRoute_Router-1_to_Leaf-0003.PNG "This is a Dump14")
+![This is an alt text.](Dump15_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB_DisaggregateRoute_Router-1_to_Leaf-0003.PNG "This is a Dump15")
+![This is an alt text.](Dump16_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB-3_DisaggregateRoute_Router-1_to_Leaf-0003.PNG "This is a Dump16")
+#### BGP Update-сообщения MP_UNREACH_NLRI (Withdrawn routes, EVPN Type-5) получаемые коммутатором Leaf-0001 от Spine-0001 в каждом VRF:
+![This is an alt text.](Dump17_BGP_EVPN_RT5_MP_UNREACH_NLRI__vrf_sIRB_DisaggregateRoute_Spine-0001_to_Leaf-0001.PNG "This is a Dump17")
+![This is an alt text.](Dump18_BGP_EVPN_RT5_MP_UNREACH_NLRI__vrf_sIRB-2&sIRB-3_DisaggregateRoute_Spine-0001_to_Leaf-0001.PNG "This is a Dump18")
+#### BGP Update-сообщениe (тройное) MP_REACH_NLRI (EVPN Type-5) получаемые коммутатором Leaf-0001 от Spine-0001 в каждом VRF, содержащие префикс - 1200:8000::/17 (терминируется на Leaf-0002):
+![This is an alt text.](Dump19_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB_DisaggregateRoute_Spine-0001_to_Leaf-0001_1.PNG "This is a Dump19")
+![This is an alt text.](Dump20_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB-3_DisaggregateRoute_Spine-0001_to_Leaf-0001_2.PNG "This is a Dump20")
+![This is an alt text.](Dump21_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB-2_DisaggregateRoute_Spine-0001_to_Leaf-0001_3.PNG "This is a Dump21")
+### 2.2) При восстановлении агрегации в префикс - 1200::/16 на Router-1
+#### BGP Update-сообщения MP_REACH_NLRI (Unicast) получаемые коммутатором Leaf-0003 от Router-1 в каждом VRF:
+![This is an alt text.](Dump22_BGP_Unicast_MP_UNREACH_NLRI__vrf_sIRB_AggregateRoute_Router-1_to_Leaf-0003.PNG "This is a Dump22")
+![This is an alt text.](Dump23_BGP_Unicast_MP_UNREACH_NLRI__vrf_sIRB-2_AggregateRoute_Router-1_to_Leaf-0003.PNG "This is a Dump23")
+![This is an alt text.](Dump24_BGP_Unicast_MP_UNREACH_NLRI__vrf_sIRB-3_AggregateRoute_Router-1_to_Leaf-0003.PNG "This is a Dump24")
+#### BGP Update-сообщениe (одинарное и двойное) MP_UNREACH_NLRI (Withdrawn routes, EVPN Type-5) получаемые коммутатором Leaf-0001 от Spine-0001 в каждом VRF, содержащие префикс - 1200:8000::/17 (терминируется на Leaf-0002):
+![This is an alt text.](Dump25_BGP_EVPN_RT5_MP_UNREACH_NLRI__vrf_sIRB_AggregateRoute_Spine-0001_to_Leaf-0001.PNG "This is a Dump25")
+![This is an alt text.](Dump26_BGP_EVPN_RT5_MP_UNREACH_NLRI__vrf_sIRB-3&sIRB-2_AggregateRoute_Spine-0001_to_Leaf-0001.PNG "This is a Dump26")
+#### BGP Update-сообщениe (одинарное и двойное) MP_REACH_NLRI (EVPN Type-5) получаемые коммутатором Leaf-0001 от Spine-0001 в каждом VRF, содержащие префикс - 1200::/16:
+![This is an alt text.](Dump27_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB_AggregateRoute_Spine-0001_to_Leaf-0001.PNG "This is a Dump27")
+![This is an alt text.](Dump28_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB-3_AggregateRoute_Spine-0001_to_Leaf-0001_1.PNG "This is a Dump28")
+![This is an alt text.](Dump29_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB-2_AggregateRoute_Spine-0001_to_Leaf-0001_2.PNG "This is a Dump29")
 
 ## Листинг команд с примерами вывода:
 #### Листинг:
