@@ -102,13 +102,14 @@
 * Адреса 2000:997::997/128, 2000:998::998/128, 2000:999::999/128 затерминированные на внешнем устройстве доступны через перераспределенный маршрут по-умолчанию.
 
 ## Проверка работы Overlay-сети:
-
+#### Связь между серверами
 ![This is an alt text.](From_Server1.PNG "This is a network connectivity test.")
 
 ![This is an alt text.](From_Server2.PNG "This is a network connectivity test.")
 
 ![This is an alt text.](From_Server3.PNG "This is a network connectivity test.")
 
+#### Связь до внешних адресов через ::/0
 ![This is an alt text.](From_Server1_to_External_Network_via_DefaultRoute.PNG "This is a network connectivity test.")
 
 ![This is an alt text.](From_Server2_to_External_Network_via_DefaultRoute.PNG "This is a network connectivity test.")
