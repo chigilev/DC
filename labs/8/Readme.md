@@ -129,7 +129,7 @@
 ![This is an alt text.](Dump7_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump7")
 ![This is an alt text.](Dump8_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB-3_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump8")
 ![This is an alt text.](Dump9_BGP_Unicast_MP_REACH_NLRI__vrf_sIRB-2_DefaultRoute_Router-1_to_Leaf-0003.PNG "This is a Dump9")
-#### BGP Update-сообщения MP_REACH_NLRI (EVPN Type-5) получаемые коммутатором Leaf-0002 от Spine-0002 в каждом VRF:
+#### BGP Update-сообщениe (тройное) MP_REACH_NLRI (EVPN Type-5) получаемые коммутатором Leaf-0002 от Spine-0002 в каждом VRF:
 ![This is an alt text.](Dump10_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB-2_DefaultRoute_Spine-0002_to_Leaf-0002_1.PNG "This is a Dump10")
 ![This is an alt text.](Dump11_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB-3_DefaultRoute_Spine-0002_to_Leaf-0002_2.PNG "This is a Dump11")
 ![This is an alt text.](Dump12_BGP_EVPN_RT5_MP_REACH_NLRI__vrf_sIRB_DefaultRoute_Spine-0002_to_Leaf-0002_3.PNG "This is a Dump12")
