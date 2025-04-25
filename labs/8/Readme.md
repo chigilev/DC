@@ -848,7 +848,7 @@ router bgp 64513
       router-id 1.1.1.2
       neighbor 2999::3 remote-as 64999
       neighbor 2999::3 update-source Vlan999
-      neighbor 2999::3 allowas-in 3
+      neighbor 2999::3 allowas-in 1
       redistribute connected
       !
       address-family ipv6
