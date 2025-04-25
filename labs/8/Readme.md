@@ -100,6 +100,7 @@
 * На внешнем устройстве осуществлена агрегация адресов 1100::1/17 и 1100:8000::1/17, которые затерминированы на коммутаторах Leaf-0001 и Leaf-0002 соответственно, в 1100::/16;
 * На внешнем устройстве осуществлена агрегация адресов 1200::1/17 и 1200:8000::1/17, которые затерминированы на коммутаторах Leaf-0001 и Leaf-0002 соответственно, в 1200::/16;
 * Адреса 2000:997::997/128, 2000:998::998/128, 2000:999::999/128 затерминированные на внешнем устройстве доступны через перераспределенный маршрут по-умолчанию.
+* На случай падения одного из интерфейса до маршрутизатора, разрешен прием префиксов, в анонсах которых присутствует своя ASN.
 
 ## Проверка работы Overlay-сети:
 #### Связь между серверами
@@ -821,6 +822,7 @@ router bgp 64513
       router-id 1.1.1.2
       neighbor 2997::3 remote-as 64999
       neighbor 2997::3 update-source Vlan997
+      neighbor 2997::3 allowas-in 1
       redistribute connected
       !
       address-family ipv6
@@ -833,6 +835,7 @@ router bgp 64513
       router-id 1.1.1.2
       neighbor 2998::3 remote-as 64999
       neighbor 2998::3 update-source Vlan998
+      neighbor 2998::3 allowas-in 1
       redistribute connected
       !
       address-family ipv6
@@ -845,6 +848,7 @@ router bgp 64513
       router-id 1.1.1.2
       neighbor 2999::3 remote-as 64999
       neighbor 2999::3 update-source Vlan999
+      neighbor 2999::3 allowas-in 3
       redistribute connected
       !
       address-family ipv6
@@ -1065,6 +1069,7 @@ router bgp 64514
       router-id 1.1.1.3
       neighbor 2997::3 remote-as 64999
       neighbor 2997::3 update-source Vlan997
+      neighbor 2997::3 allowas-in 1
       redistribute connected
       !
       address-family ipv6
@@ -1077,6 +1082,7 @@ router bgp 64514
       router-id 1.1.1.3
       neighbor 2998::3 remote-as 64999
       neighbor 2998::3 update-source Vlan998
+      neighbor 2998::3 allowas-in 1
       redistribute connected
       !
       address-family ipv6
@@ -1089,6 +1095,7 @@ router bgp 64514
       router-id 1.1.1.3
       neighbor 2999::3 remote-as 64999
       neighbor 2999::3 update-source Vlan999
+      neighbor 2999::3 allowas-in 1
       redistribute connected
       !
       address-family ipv6
