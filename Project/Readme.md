@@ -142,6 +142,9 @@ STP на Leaf-коммутаторах включен, каждому из ко�
 show bgp evpn
 show mac address-table
 show ipv6 route vrf CUST-1
+show bgp evpn instance (BGW)
+show interfaces vxlan 1 (BGW)
+
 ```
 
 #### Выводы команд с коммутатора Leaf-10001:
@@ -292,6 +295,46 @@ Codes: C - connected, S - static, K - kernel, O3 - OSPFv3,
  B E      2002::1:101:0/112 [200/0]
            via VTEP fd0::1:1000:f101 VNI 11111111 router-mac 50:00:00:88:70:da local-interface Vxlan1
            via VTEP fd0::1:1000:f102 VNI 11111111 router-mac 50:00:00:10:d0:f5 local-interface Vxlan1
+```
+
+#### Выводы команд с коммутатора BGW-101:
+
+```
+BGW-101#show bgp evpn instance
+EVPN instance: VLAN-aware bundle CUST-2
+  Route distinguisher: 101.1.1.1:2
+  Route distinguisher remote: 101.1.1.1:2
+  Route target import: Route-Target-AS:2:2
+  Route target export: Route-Target-AS:2:2
+  Route target import remote: Route-Target-AS:200:200
+  Route target export remote: Route-Target-AS:200:200
+  Service interface: VLAN-aware bundle
+  Local VXLAN IP address: fd0::1:1000:f101
+  VXLAN: enabled
+  MPLS: disabled
+```
+```
+BGW-101#show interfaces vxlan 1
+Vxlan1 is up, line protocol is up (connected)
+  Hardware is Vxlan
+  Source interface is Loopback0 and is active with fd0::1:1000:f101
+  Listening on UDP port 4789
+  Vxlan Encapsulation is IPv6
+  Replication/Flood Mode is headend with Flood List Source: EVPN
+  Remote MAC learning via EVPN
+  VNI mapping to VLANs
+  Static VLAN to VNI mapping is
+    [200, 1000200]
+  Dynamic VLAN to VNI mapping for 'evpn' is
+    [4094, 11111111]
+  Note: All Dynamic VLANs used by VCS are internal VLANs.
+        Use 'show vxlan vni' for details.
+  Static VRF to VNI mapping is
+   [CUST-1, 11111111]
+  Headend replication flood vtep list is:
+   200 fd0::2:1000:f201 fd0::1:1000:f102 fd0::1:1000:1   fd0::1:1000:2
+  Shared Router MAC is 0000.0000.0000
+  VTEP to VTEP bridging to remote domain is enabled
 ```
 
 ## Конфигурации устройств:
