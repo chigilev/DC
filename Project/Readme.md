@@ -115,7 +115,7 @@ STP на Leaf-коммутаторах включен, каждому из ко�
 
 ## Cхема сети:
 
-![This is an alt text.](VXLAN_EVPN_Multi-Site.PNG "This is a network topology.")
+![This is an alt text.](VXLAN_EVPN_Multi-Site.png "This is a network topology.")
 
 ## Список реализованных функций:
 
